@@ -16,10 +16,12 @@
   -->
 <resources>
     <string-array name="updates">
+	    <item>Version 1.98.1
+            * TBD…</item>
         <item>Version 1.97.99
             * Due to the high amount of nonsense developers are forced to comply with I decided not to update the release for Play Store
             compatibility anymore. I\'m doing this in my spare time and I\'m NOT going to provide Google with a Video to show why this
-            app needs permission to run foreground services... It\'s become such a nuisance that this will be the last release here.
+            app needs permission to run foreground services… It\'s become such a nuisance that this will be the last release here.
             From now on you can find updates via https://github.com/nilsbraden/ttrss-reader-fork/ or a little later on F-Droid.</item>
 	    <item>Version 1.97.9
              * Bump new versions to stay in play store..
