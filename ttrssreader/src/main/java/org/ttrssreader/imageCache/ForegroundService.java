@@ -26,6 +26,7 @@ import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.ttrssreader.R;
 import org.ttrssreader.controllers.Data;
@@ -149,11 +150,7 @@ public class ForegroundService extends Service implements ICacheEndListener {
 	}
 
 	public void doStartForeground(int id, Notification notification) {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			startForeground(id, notification);
-		} else {
-			startForeground(id, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
-		}
+		Utils.showBackgroundToast(this, "This function is not available in Play Store anymore and the App will no longer be updated in Play Store. Please visit https://github.com/nilsbraden/ttrss-reader-fork/ for new releases.", Toast.LENGTH_LONG);
 	}
 
 }
