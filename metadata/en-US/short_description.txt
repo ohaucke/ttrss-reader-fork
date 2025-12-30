@@ -1,0 +1,1 @@
+Tiny Tiny RSS Reader is an application for reading your feeds from your Tiny Tiny RSS instance.

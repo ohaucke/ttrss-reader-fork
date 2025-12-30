@@ -1,0 +1,31 @@
+<b>TTRSS-Reader</b>
+TTRSS-Reader (or ttrss-reader-fork) is a fork of the original Project from from google-code. I took the sourcecode and continued the development because the original owner didn't reply to any messages back then (and has not done so as of today).
+
+It is a client application for the RSS-Reader <a href="http://tt-rss.org/">Tiny Tiny RSS</a>, a PHP-based online feedreader which runs on your own webspace. It is accessible with any browser and even supports keyboard shortcuts through javascript.
+
+<b>Features</b>
+ * Use Swipe for Next/Previous Article
+ * Swipe-Area in bottom area of the Article-View to avoid swiping while scrolling
+ * Show or download images/videos/music attached to Articles
+ * Share URL via Twitter/SMS/Mail
+ * Mark everything (whole category or all categories) as read
+ * Navigate through articles with volume-buttons
+ * Read Labels
+ * Cache articles in local-database
+ * Cache images for offline browsing
+ * SSL-Supoprt with self-signed certificates
+ * Scheduled updates via Tasker/Locale
+ * Fast JSON-Parsing with stream-based parser GSON 
+
+See <a href="https://github.com/nilsbraden/ttrss-reader-fork/wiki/Changelog">Changelog</a> for detailed information.
+
+<b>Changelog</b>
+Please follow this link: https://github.com/nilsbraden/ttrss-reader-fork/wiki/Changelog
+
+<b>Contact</b>
+Please feel free to contact me via E-Mail (ttrss /at/ nilsbraden.de) or via the Bugtracker (Issues). If you have questions specifically about Tiny Tiny RSS you may ask me or visit <a href="https://tt-rss.org/">TT-RSS.org</a>. If I don't answer fast enough or am not willing to implement your suggestion please keep in mind that this is only a hobby for me and I'm unwilling to implement every little feature just beacuse you suggested I do so. You may implement it and send me pull-requests so I can include the features but I can't guarantee I will do this for every thing you want to have.
+
+<b>Donations</b>
+If you would like to support my work and the further developement of TTRSS-reader you may submit a donation via Paypal <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SD4AN4APNW6B4">here</a>.
+
+For more information you may want to visit: https://github.com/nilsbraden/ttrss-reader-fork/wiki/Donations
