@@ -14,10 +14,10 @@ dependencyResolutionManagement {
         maven {
             // Tasker Locale API: https://github.com/twofortyfouram/android-toast-setting-plugin-for-locale/blob/master/gradle.properties
             // For the Locale Plug-in SDK artifacts (GitHub Package Registry does not allow anonymous access)
-            url localePluginMavenUrl
+            url = localePluginMavenUrl
             credentials {
-                username localePluginMavenUser
-                password localePluginMavenPassword
+                username = localePluginMavenUser
+                password = localePluginMavenPassword
             }
         }
     }
