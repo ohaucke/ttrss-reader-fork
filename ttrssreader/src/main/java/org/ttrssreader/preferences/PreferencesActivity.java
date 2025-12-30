@@ -29,6 +29,7 @@ import org.ttrssreader.utils.AsyncTask;
 import org.ttrssreader.utils.PostMortemReportExceptionHandler;
 import org.ttrssreader.utils.Utils;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -70,6 +71,22 @@ public class PreferencesActivity extends MenuFlavorActivity implements Preferenc
 		}
 
 		initToolbar();
+
+		OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+			@Override
+			public void handleOnBackPressed() {
+				var frag = getSupportFragmentManager();
+				if (frag.getBackStackEntryCount() > 0 && frag.isStateSaved()) {
+					frag.popBackStack();
+				} else {
+					// Avoid calling this callback again by disabling and re-enabling it:
+					this.setEnabled(false);
+					getOnBackPressedDispatcher().onBackPressed();
+					this.setEnabled(true);
+				}
+			}
+		};
+		getOnBackPressedDispatcher().addCallback(this, callback);
 	}
 
 	private void initToolbar() {
@@ -79,16 +96,6 @@ public class PreferencesActivity extends MenuFlavorActivity implements Preferenc
 			m_Toolbar.setVisibility(View.VISIBLE);
 			m_Toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
 			m_Toolbar.setNavigationOnClickListener(v -> onBackPressed());
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		// Back button automatically finishes the activity since Lollipop so we have to work around by checking the backstack before
-		if (getSupportFragmentManager().getBackStackEntryCount() > 0 && getSupportFragmentManager().isStateSaved()) {
-			getSupportFragmentManager().popBackStack();
-		} else {
-			super.onBackPressed();
 		}
 	}
 

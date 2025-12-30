@@ -469,7 +469,7 @@ public abstract class MenuActivity extends MenuFlavorActivity implements IUpdate
 		updater = null;
 		doRefresh();
 		if (goBackAfterUpdate && !isFinishing())
-			onBackPressed();
+			getOnBackPressedDispatcher().onBackPressed();
 	}
 
 	protected void doStopImageCache() {

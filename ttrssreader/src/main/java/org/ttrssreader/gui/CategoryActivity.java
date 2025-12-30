@@ -44,6 +44,7 @@ import org.ttrssreader.utils.Utils;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.FragmentManager;
@@ -122,6 +123,30 @@ public class CategoryActivity extends MenuActivity implements IItemSelectedListe
 				doStartImageCache();
 			}
 		}
+
+		OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+			@Override
+			public void handleOnBackPressed() {
+				selectedCategoryId = Integer.MIN_VALUE;
+				var frag = getSupportFragmentManager();
+				if (frag.getBackStackEntryCount() > 0 && frag.isStateSaved()) {
+					frag.popBackStack();
+					doRefresh();
+				} else if (frag.getBackStackEntryCount() > 0) {
+					doRefresh();
+					// Avoid calling this callback again by disabling and re-enabling it:
+					this.setEnabled(false);
+					getOnBackPressedDispatcher().onBackPressed();
+					this.setEnabled(true);
+				} else {
+					// Avoid calling this callback again by disabling and re-enabling it:
+					this.setEnabled(false);
+					getOnBackPressedDispatcher().onBackPressed();
+					this.setEnabled(true);
+				}
+			}
+		};
+		getOnBackPressedDispatcher().addCallback(this, callback);
 	}
 
 	@Override
@@ -369,23 +394,6 @@ public class CategoryActivity extends MenuActivity implements IItemSelectedListe
 			return SELECTED_LABEL;
 		} else {
 			return SELECTED_CATEGORY;
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		selectedCategoryId = Integer.MIN_VALUE;
-		// Back button automatically finishes the activity since Lollipop
-		// so we have to work around by checking the backstack before
-		FragmentManager fm = getSupportFragmentManager();
-		if (fm.getBackStackEntryCount() > 0 && fm.isStateSaved()) {
-			fm.popBackStack();
-			doRefresh();
-		} else if (fm.getBackStackEntryCount() > 0) {
-			doRefresh();
-			super.onBackPressed();
-		} else {
-			super.onBackPressed();
 		}
 	}
 

@@ -23,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.window.OnBackInvokedCallback;
 
 import org.ttrssreader.R;
 import org.ttrssreader.controllers.Controller;
@@ -36,6 +37,7 @@ import org.ttrssreader.utils.Utils;
 
 import java.util.List;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.FragmentManager;
@@ -93,6 +95,23 @@ public class FeedHeadlineActivity extends MenuActivity {
 			if (ab != null)
 				ab.hide();
 		}
+
+		OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+			@Override
+			public void handleOnBackPressed() {
+				articleId = Integer.MIN_VALUE;
+				var frag = getSupportFragmentManager();
+				if (frag.getBackStackEntryCount() > 0 && frag.isStateSaved()) {
+					frag.popBackStack();
+				} else {
+					// Avoid calling this callback again by disabling and re-enabling it:
+					this.setEnabled(false);
+					getOnBackPressedDispatcher().onBackPressed();
+					this.setEnabled(true);
+				}
+			}
+		};
+		getOnBackPressedDispatcher().addCallback(this, callback);
 	}
 
 	@Override
@@ -381,17 +400,6 @@ public class FeedHeadlineActivity extends MenuActivity {
 				ft.setCustomAnimations(R.animator.slide_in_right, R.animator.slide_out_left);
 			else
 				ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		articleId = Integer.MIN_VALUE;
-		// Back button automatically finishes the activity since Lollipop so we have to work around by checking the backstack before
-		if (getSupportFragmentManager().getBackStackEntryCount() > 0 && getSupportFragmentManager().isStateSaved()) {
-			getSupportFragmentManager().popBackStack();
-		} else {
-			super.onBackPressed();
 		}
 	}
 

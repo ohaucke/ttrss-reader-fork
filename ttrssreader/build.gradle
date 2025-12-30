@@ -107,4 +107,7 @@ dependencies {
     // F*** Google, lots of difficulties with permissions for starting services...
     implementation 'androidx.work:work-runtime:2.11.0'
     implementation 'com.google.guava:guava:33.5.0-android'
+
+    // Predictive-back gesture: https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture
+    implementation 'androidx.activity:activity:1.12.2'
 }
