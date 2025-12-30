@@ -101,10 +101,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.12.12'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.12'
 
-    // Strange duplicate dependency error:
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.9.4'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4'
-
     // Fix duplicate class errors
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.10"))
 
