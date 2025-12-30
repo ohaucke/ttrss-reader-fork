@@ -1,0 +1,5 @@
+Version 1.98.1
+ * Added metadata for F-Droid to the release
+ * Stopped publishing to play store due to too much compliance bulls***
+ * Fixed small issues with new inset-layout
+ * Fixed Issue #480: Removed deprecated calls to onBackPressed and replaced with (hopefully) backwards-compatible calls to androidx.activity:activity
