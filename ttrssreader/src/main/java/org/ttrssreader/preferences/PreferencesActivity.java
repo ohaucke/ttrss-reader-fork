@@ -31,7 +31,6 @@ import org.ttrssreader.utils.Utils;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -95,7 +94,7 @@ public class PreferencesActivity extends MenuFlavorActivity implements Preferenc
 			setSupportActionBar(m_Toolbar);
 			m_Toolbar.setVisibility(View.VISIBLE);
 			m_Toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_material);
-			m_Toolbar.setNavigationOnClickListener(v -> onBackPressed());
+			m_Toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 		}
 	}
 

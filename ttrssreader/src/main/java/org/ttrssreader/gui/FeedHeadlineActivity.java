@@ -23,7 +23,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.window.OnBackInvokedCallback;
 
 import org.ttrssreader.R;
 import org.ttrssreader.controllers.Controller;
