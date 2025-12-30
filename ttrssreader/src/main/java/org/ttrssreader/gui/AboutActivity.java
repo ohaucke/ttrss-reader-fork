@@ -21,6 +21,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +33,11 @@ import org.ttrssreader.utils.PostMortemReportExceptionHandler;
 import org.ttrssreader.utils.Utils;
 
 import java.util.Date;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import static org.ttrssreader.R.id.AboutActivity_ThanksText;
 
@@ -51,6 +58,7 @@ public class AboutActivity extends MenuFlavorActivity {
 		w.requestFeature(Window.FEATURE_LEFT_ICON);
 
 		setContentView(R.layout.about);
+
 
 		w.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, android.R.drawable.ic_dialog_info);
 
@@ -80,6 +88,24 @@ public class AboutActivity extends MenuFlavorActivity {
 
 		Button donateBtn = this.findViewById(R.id.AboutActivity_DonateBtn);
 		donateBtn.setOnClickListener(view -> donateButtonPressed());
+
+
+		WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.about), (v, windowInsets) -> {
+			Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+			// Apply the insets as a margin to the view. Here the system is setting
+			// only the bottom, left, and right dimensions, but apply whichever insets are
+			// appropriate to your layout. You can also update the view padding
+			// if that's more appropriate.
+			ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+			mlp.leftMargin = insets.left;
+			mlp.topMargin = insets.top;
+			mlp.rightMargin = insets.right;
+			v.setLayoutParams(mlp);
+
+			return WindowInsetsCompat.CONSUMED;
+		});
 	}
 
 	@Override
