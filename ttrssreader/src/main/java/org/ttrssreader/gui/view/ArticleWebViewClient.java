@@ -128,7 +128,11 @@ public class ArticleWebViewClient extends WebViewClient {
 					case 2:
 						intent.setAction(Intent.ACTION_VIEW);
 						intent.setDataAndType(Uri.parse(url), contentType);
-						context.startActivity(intent);
+						try {
+							context.startActivity(intent);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						break;
 					default:
 						Log.e(TAG, "Doing nothing, but why is that?? Item: " + item);
