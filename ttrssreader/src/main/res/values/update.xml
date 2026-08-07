@@ -16,6 +16,10 @@
   -->
 <resources>
     <string-array name="updates">
+        <item>Version 1.98.2
+             * Fix error \"Unable to extract the trust manager on Android10Platform\"
+             * Fix #485, crash when no app for handling media links is present
+             * Updated libraries and build configuration</item>
 	    <item>Version 1.98.1
              * Added metadata for F-Droid to the release
              * Stopped publishing to play store due to too much compliance bulls***
