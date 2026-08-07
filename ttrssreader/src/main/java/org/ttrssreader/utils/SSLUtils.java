@@ -28,8 +28,10 @@ import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManager;
@@ -65,6 +67,18 @@ public class SSLUtils {
 		kmf.init(keystore, password.toCharArray());
 
 		initSslSocketFactory(kmf.getKeyManagers(), tmf.getTrustManagers());
+	}
+
+	public static X509TrustManager getDefaultTrustManager() throws KeyStoreException, NoSuchAlgorithmException {
+		TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+				TrustManagerFactory.getDefaultAlgorithm());
+		trustManagerFactory.init((KeyStore) null);
+		TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+		if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+			throw new IllegalStateException("Unexpected default trust managers:"
+					+ Arrays.toString(trustManagers));
+		}
+		return (X509TrustManager) trustManagers[0];
 	}
 
 	private static KeyStore loadKeystore(String keystorePassword) throws GeneralSecurityException {

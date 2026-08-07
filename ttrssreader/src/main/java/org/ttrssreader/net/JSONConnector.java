@@ -182,7 +182,13 @@ public class JSONConnector {
 			// Build Client-Object:
 			OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
 			if (SSLUtils.factory != null) {
-				clientBuilder.sslSocketFactory(SSLUtils.factory);
+				//clientBuilder.sslSocketFactory(SSLUtils.factory);
+				try {
+					clientBuilder.sslSocketFactory(SSLUtils.factory, SSLUtils.getDefaultTrustManager());
+				} catch (Exception ex) {
+					// TODO
+					ex.printStackTrace();
+				}
 			}
 			clientBuilder.proxy(getProxy());
 			clientBuilder.readTimeout(10, timeoutUnit);
